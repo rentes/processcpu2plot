@@ -12,7 +12,7 @@ with open("top.txt") as topfile:
         values.append(line.split()[8])
 
 t = np.arange(0., int(sys.argv[2]), 0.25)
-plt.plot(values, 'bo')
+plt.plot(values, 'b')
 plt.ylabel('process cpu %')
 plt.xlabel('time: ' + sys.argv[2] + ' intervals of 0.25 each')
 plt.axis([0, int(sys.argv[2]), 0, 100])
