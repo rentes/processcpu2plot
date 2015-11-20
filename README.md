@@ -1,5 +1,5 @@
 # toptoplot
-A python command-line utility to display top output as a graphic plot.
+A python command-line utility to display top CPU % output of a single process as a graphic plot.
 
 <img src="img/figure_1.png" />
 
@@ -16,8 +16,14 @@ python toptoplot.py <process-name> <total number of iterations> <interval>
 
 Examples
 
+On Linux/Mac OS:
 ```python
 $ python toptoplot.py chrome 21 1.0
+```
+
+On Windows:
+```python
+$ python toptoplot.py chrome.exe 21 1.0
 ```
 
 ## Installation Instructions
