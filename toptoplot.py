@@ -1,20 +1,26 @@
 #!/usr/bin/env python3
-import os
 import sys
 import matplotlib.pyplot as plt
-import numpy as np
+import psutil
 
-os.system("top -b -d 0.25 -n " + sys.argv[2] + " | grep -v \"top - \" | grep -w \"" + sys.argv[1] + "\" > top.txt")
-
+pid = 0
+process_cpu_percent = 0.0
 values = []
-with open("top.txt") as topfile:
-    for line in topfile:
-        values.append(line.split()[8])
+if sys.argv[1]:
+    for process in psutil.process_iter():
+        if process.name() == sys.argv[1]:
+            # TODO: cycle through all possible forks
+            pid = process.pid
 
-t = np.arange(0., int(sys.argv[2]), 0.25)
+process = psutil.Process(pid)
+print(process)
+for i in range(10):
+    process_cpu_percent = process.cpu_percent(interval=1)
+    print(process_cpu_percent)
+    values.append(process_cpu_percent)
+
 plt.plot(values, 'b')
 plt.ylabel('process cpu %')
-plt.xlabel('time: ' + sys.argv[2] + ' intervals of 0.25 each')
-plt.axis([0, int(sys.argv[2]), 0, 100])
+plt.xlabel('time: s')
+plt.axis([0, 10, 0, 100])
 plt.show()
-
