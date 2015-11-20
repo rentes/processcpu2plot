@@ -46,7 +46,7 @@ except psutil.NoSuchProcess:
     exit(-1)
 
 plt.plot(values, 'b')
-plt.ylabel('process cpu %')
-plt.xlabel('time: s')
+plt.ylabel(process.name() + ' CPU %')
+plt.xlabel('time: ' + str(iterations) + ' iterations of ' + str(interval) + 's each')
 plt.axis([0, iterations, 0, 100])
 plt.show()
