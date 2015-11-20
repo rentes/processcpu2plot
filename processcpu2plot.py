@@ -8,7 +8,8 @@ def validate_iterations():
     param = 0
     if len(sys.argv) == 1:
         print('no parameters input.\n' +
-              'usage: processcpu2plot.py <process-name> <iterations> <interval>\n' +
+              'usage: processcpu2plot.py <process-name> ' +
+              '<iterations> <interval>\n' +
               'exiting.')
         exit(0)
     if len(sys.argv) >= 3:
@@ -36,7 +37,8 @@ def process_pid():
                 _pid = _process.pid
     if _pid == 0:
         print('process not found. please check input.' +
-              'process name has to exactly match, e.g. chrome.exe not chrome.EXE')
+              'process name has to exactly match, e.g. chrome.exe ' +
+              'not chrome.EXE nor Chrome.exe')
         exit(0)
     return _pid
 
@@ -57,7 +59,8 @@ def process_cpu_values(_iterations, _interval):
 def plot(_values, _process, _iterations, _interval):
     plt.plot(_values, 'b')
     plt.ylabel(_process.name() + ' CPU %')
-    plt.xlabel('time: ' + str(_iterations) + ' iterations of ' + str(_interval) + 's each')
+    plt.xlabel('time: ' + str(_iterations) + ' iterations of ' +
+               str(_interval) + 's each')
     plt.axis([0, _iterations, 0, 100])
     plt.show()
 
