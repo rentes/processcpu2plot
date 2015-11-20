@@ -42,7 +42,8 @@ Install matplotlib using pip.
 ## TODO
 
 - Treat all process forks separately on the plot with a different color
-- mouse hover a plot line will show the process ID
+- mouse hover a plot line will show the process ID and CPU % on that point
+- expand utility to other metrics: memory, disk I/O, or number of open file descriptors, for example.
 
 ## Resources
 
