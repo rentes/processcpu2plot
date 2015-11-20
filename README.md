@@ -1,5 +1,5 @@
-# toptoplot
-A python command-line utility to display top CPU % output of a single process as a graphic plot.
+# processcpu2plot
+A python command-line utility to display CPU % output of a single process as a graphic plot.
 
 <img src="img/figure_1.png" />
 
@@ -8,7 +8,7 @@ A python command-line utility to display top CPU % output of a single process as
 Just run it on the command line like this:
 
 ```python
-python toptoplot.py <process-name> <total number of iterations> <interval>
+python processcpu2plot.py <process-name> <total number of iterations> <interval>
 ```
 - The process name must match the process name you want to plot its CPU usage
 - The number of iterations is an integer with the number of iterations you want to check for the process CPU usage
@@ -18,12 +18,12 @@ Examples
 
 On Linux/Mac OS:
 ```python
-$ python toptoplot.py chrome 21 1.0
+$ python processcpu2plot.py chrome 21 1.0
 ```
 
 On Windows:
 ```python
-$ python toptoplot.py chrome.exe 21 1.0
+$ python processcpu2plot.py chrome.exe 21 1.0
 ```
 
 ## Installation Instructions
