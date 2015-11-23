@@ -1,4 +1,4 @@
-[![License](https://go-shields.herokuapp.com/license-MIT-blue.png)](http://opensource.org/licenses/MIT)
+[![Build Status](https://travis-ci.org/rentes/processcpu2plot.svg?branch=master)](https://travis-ci.org/rentes/processcpu2plot) [![License](https://go-shields.herokuapp.com/license-MIT-blue.png)](http://opensource.org/licenses/MIT)
 
 # processcpu2plot
 A python command-line utility to display CPU % output of a single process as a graphic plot.
