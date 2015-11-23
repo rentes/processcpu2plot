@@ -18,12 +18,12 @@ Examples
 
 On Linux/Mac OS:
 ```python
-$ python processcpu2plot.py chrome 21 1.0
+$ python processcpu2plot.py chrome 21 0.1
 ```
 
 On Windows:
 ```python
-$ python processcpu2plot.py chrome.exe 21 1.0
+$ python processcpu2plot.py chrome.exe 21 0.1
 ```
 
 ## Installation Instructions
@@ -41,7 +41,6 @@ Install matplotlib using pip.
 
 ## TODO
 
-- Treat all process forks separately on the plot with a different color
 - mouse hover a plot line will show the process ID and CPU % on that point
 - expand utility to other metrics: memory, disk I/O, or number of open file descriptors, for example.
 
