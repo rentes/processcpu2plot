@@ -84,23 +84,29 @@ def process_cpu_values(_process, _iterations, _interval):
                 values_array[process_index][iteration] = \
                     _process[process_index].cpu_percent(_interval)
             except psutil.NoSuchProcess:
-                print('process no longer running. setting cpu % to 0.0')
+                print('process with ID ' + str(_process[process_index].pid) +
+                      ' no longer running. setting cpu % to 0.0')
                 values_array[process_index][iteration] = 0.0
     return values_array
 
 
-def plot(_values, _iterations, _interval):
+def plot(_values, _pids, _iterations, _interval):
     """ Uses the matplotlib to create a line graphic plot
     :param _values: the list of CPU % values
+    :param _pids: the list of PIDs (for the label on the graphic plot)
     :param _iterations: How many iterations will be
     :param _interval: How long each iteration lasts
     """
     for pid_value in range(len(_values)):
-        plt.plot(_values[pid_value])
+        plt.plot(_values[pid_value], label=str(_pids[pid_value].pid))
     plt.ylabel(sys.argv[1] + ' CPU %')
     plt.xlabel('time: ' + str(_iterations) + ' iterations of ' +
                str(_interval) + 's each')
     plt.axis([0, _iterations, 0, 100])
+    if len(_pids) == 1:
+        plt.legend(loc=1, ncol=2, shadow=True, title="PID", fancybox=True)
+    else:
+        plt.legend(loc=1, ncol=2, shadow=True, title="PIDs", fancybox=True)
     plt.show()
 
 
@@ -109,4 +115,4 @@ if __name__ == "__main__":
     INTERVAL = validate_interval()
     PIDS = process_pid()
     VALUES = process_cpu_values(PIDS, ITERATIONS, INTERVAL)
-    plot(VALUES, ITERATIONS, INTERVAL)
+    plot(VALUES, PIDS, ITERATIONS, INTERVAL)
