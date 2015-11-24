@@ -17,9 +17,10 @@
     Runs 21 iterations of 0.1s each to obtain the CPU % values for the
     chrome processes and generates a line plot for each at the end
 
-    External dependencies: pyplot (matplotlib), and psutil
+    External dependencies: pyplot (matplotlib), numpy and psutil
 """
 import matplotlib.pyplot as plt
+import numpy as np
 import psutil
 import sys
 
@@ -108,8 +109,7 @@ class ProcessCPU2Plot:
         """ Gets the CPU % values from the running process PIDs
         :return: A list with the CPU % for each running process PID
         """
-        values_array = [[0 for x in range(self.iterations)]
-                        for x in range(len(self.pids))]
+        values_array = np.zeros((len(self.pids), self.iterations))
         for iteration in range(self.iterations):
             for process_index in range(len(self.pids)):
                 try:
@@ -144,8 +144,10 @@ if __name__ == "__main__":
     if NUMBER_OF_PARAMETERS < 3:
         print(INCORRECT_NUMBER_OF_PARAMETERS_FOUND)
         exit(-1)
+    # creates a new ProcessCPU2Plot object given the command line parameters
     PROC = ProcessCPU2Plot(sys.argv[1], sys.argv[2], sys.argv[3])
     PROC.validate_parameters()
+    # obtains the process PID(s), its CPU % values and plots them
     PROC.pids = PROC.process_pid()
     PROC.values = PROC.process_cpu_values()
     PROC.plot()
