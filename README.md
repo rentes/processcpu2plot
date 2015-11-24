@@ -37,7 +37,7 @@ This piece of software is specifically made for Python 3.4.
 Install Python 3.4, matplotlib and its dependencies. It's best to install any scipy-stack compatible Python distributions, 
 like Anaconda. See [1].
 
-### Linux/Mac OS
+### Linux/Mac OS X
 
 Install matplotlib using pip.
 
@@ -46,8 +46,8 @@ Install matplotlib using pip.
 - ~~Treat all process forks separately on the plot with a different color~~
 - mouse hover a plot line will show the process ID and CPU % on that point.
 - add a curved graphic plot instead of a line.
-- after each iteration, add the new forked processes (if any), and remove the non-existing ones.
-- expand utility to other metrics: memory, disk I/O, or number of open file descriptors, for example.
+- after each iteration, add the new forked processes (if any), and remove the non-existing ones (if any).
+- expand utility to other metrics: memory, disk I/O, or number of open file descriptors, for example. Pass these options as a command line parameter.
 
 ## Resources
 
