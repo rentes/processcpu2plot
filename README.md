@@ -41,6 +41,14 @@ like Anaconda. See [1].
 
 Install matplotlib using pip.
 
+## Testing
+
+The test suite uses pytest. All you have to do is run it like this:
+
+```python
+$ py.test
+```
+
 ## TODO
 
 - ~~Treat all process forks separately on the plot with a different color~~
@@ -52,3 +60,4 @@ Install matplotlib using pip.
 ## Resources
 
 1. <a href="http://matplotlib.org/users/installing.html">Matplotlib installation instructions</a>
+2. <a href="http://pythonhosted.org/psutil/#process-class">psutil documentation (Process class)</a>
