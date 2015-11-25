@@ -113,6 +113,7 @@ class ProcessCPU2Plot:
         for iteration in range(self.iterations):
             for process_index in range(len(self.pids)):
                 try:
+                    self.pids[process_index].cpu_percent(interval=0.1)
                     values_array[process_index][iteration] = \
                         self.pids[process_index].cpu_percent(self.interval)
                 except psutil.NoSuchProcess:
@@ -126,7 +127,7 @@ class ProcessCPU2Plot:
         """ Uses the matplotlib to create a line graphic plot
         """
         for pid_value in range(len(self.values)):
-            plt.plot(self.values[pid_value],
+            plt.plot(self.values[pid_value], ':s',
                      label=str(self.pids[pid_value].pid))
         plt.ylabel(sys.argv[1] + ' CPU %')
         plt.xlabel('time: ' + str(self.iterations) + ' iterations of ' +
@@ -145,9 +146,9 @@ if __name__ == "__main__":
         print(INCORRECT_NUMBER_OF_PARAMETERS_FOUND)
         exit(-1)
     # creates a new ProcessCPU2Plot object given the command line parameters
-    PROC = ProcessCPU2Plot(sys.argv[1], sys.argv[2], sys.argv[3])
-    PROC.validate_parameters()
+    PROCESSCPU = ProcessCPU2Plot(sys.argv[1], sys.argv[2], sys.argv[3])
+    PROCESSCPU.validate_parameters()
     # obtains the process PID(s), its CPU % values and plots them
-    PROC.pids = PROC.process_pid()
-    PROC.values = PROC.process_cpu_values()
-    PROC.plot()
+    PROCESSCPU.pids = PROCESSCPU.process_pid()
+    PROCESSCPU.values = PROCESSCPU.process_cpu_values()
+    PROCESSCPU.plot()
