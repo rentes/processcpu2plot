@@ -39,7 +39,7 @@ like Anaconda. See [1].
 
 ### Linux/Mac OS X
 
-Install matplotlib using pip.
+Install Python 3.4 and then matplotlib using pip.
 
 ## Testing
 
