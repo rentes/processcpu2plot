@@ -23,7 +23,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import psutil
 import sys
-
+from scipy import interpolate
 
 USAGE = "usage: processcpu2plot.py <process-name> " +\
         "<iterations> <interval>\n" +\
@@ -126,8 +126,11 @@ class ProcessCPU2Plot:
     def plot(self):
         """ Uses the matplotlib to create a line graphic plot
         """
+        # tck = interpolate.splrep(self.values, [0, 100], 0)
+        # ynew = interpolate.splev(self.values, tck, der=0)
+        plt.figure()
         for pid_value in range(len(self.values)):
-            plt.plot(self.values[pid_value], ':s',
+            plt.plot(self.values[pid_value], interpolate.splrep(self.values[pid_value], np.arange(0, self.iterations, 1)), ':s',
                      label=str(self.pids[pid_value].pid))
         plt.ylabel(sys.argv[1] + ' CPU %')
         plt.xlabel('time: ' + str(self.iterations) + ' iterations of ' +
