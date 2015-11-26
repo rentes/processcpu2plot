@@ -109,7 +109,9 @@ class ProcessCPU2Plot:
         """ Gets the CPU % values from the running process PIDs
         :return: A list with the CPU % for each running process PID
         """
+        # pylint: disable=no-member
         values_array = np.zeros((len(self.pids), self.iterations))
+        # pylint: enable=no-member
         for iteration in range(self.iterations):
             for process_index in range(len(self.pids)):
                 try:
