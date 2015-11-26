@@ -80,7 +80,7 @@ class ProcessCPU2Plot:
         except ValueError:
             print(INCORRECT_ITERATIONS_FOUND)
             exit(-1)
-        if iterations <= 0 or isinstance(float, self.iterations):
+        if iterations <= 0 or isinstance(self.iterations, float):
             print(INCORRECT_ITERATIONS_FOUND)
             exit(-1)
         else:
