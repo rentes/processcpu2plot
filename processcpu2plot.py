@@ -25,17 +25,17 @@ import psutil
 import sys
 
 
-USAGE = "usage: processcpu2plot.py <process-name> " +\
+USAGE = "\nusage: processcpu2plot.py <process-name> " +\
         "<iterations> <interval>\n" +\
         "exiting."
-INCORRECT_NUMBER_OF_PARAMETERS_FOUND = "incorrect number of parameters.\n" +\
+INCORRECT_NUMBER_OF_PARAMETERS_FOUND = "\nincorrect number of parameters.\n" +\
                                        USAGE
-NO_PROCESS_FOUND = "process not found. please check input parameters. " +\
+NO_PROCESS_FOUND = "\nprocess not found. please check input parameters. " +\
                    "process name has to exactly match, e.g. chrome.exe " +\
                    "not chrome.EXE nor Chrome.exe"
-INCORRECT_ITERATIONS_FOUND = "incorrect iterations parameter. " +\
-                             "It must be an integer.\n" + USAGE
-INCORRECT_INTERVAL_FOUND = "incorrect interval parameter. " +\
+INCORRECT_ITERATIONS_FOUND = "\nincorrect iterations parameter. It must be " +\
+                             "an integer and greater than zero.\n" + USAGE
+INCORRECT_INTERVAL_FOUND = "\nincorrect interval parameter. " +\
                            "It must be a float.\n" + USAGE
 
 
@@ -54,11 +54,11 @@ class ProcessCPU2Plot:
         """ Validates if there are parameters entered on the command line
         :param self: the processcpu2plot object
         """
-        self.validate_process()
         self.validate_iterations()
         self.validate_interval()
+        self.find_process()
 
-    def validate_process(self):
+    def find_process(self):
         """ Validates the process name  parameter
         :return: the process name entered on the command line
         """
@@ -76,11 +76,15 @@ class ProcessCPU2Plot:
         :return: the iterations parameter entered on the command line
         """
         try:
-            int(self.iterations)
+            iterations = int(self.iterations)
         except ValueError:
             print(INCORRECT_ITERATIONS_FOUND)
             exit(-1)
-        self.iterations = int(self.iterations)
+        if iterations <= 0 or isinstance(float, self.iterations):
+            print(INCORRECT_ITERATIONS_FOUND)
+            exit(-1)
+        else:
+            self.iterations = iterations
 
     def validate_interval(self):
         """ Validates the interval parameter
