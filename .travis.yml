@@ -3,6 +3,6 @@ python:
  - "3.4"
 
 install:
- - "pip install nose matplotlib psutil"
+ - "pip install matplotlib numpy psutil"
 
-script: nosetests -v tests
+script: py.test
