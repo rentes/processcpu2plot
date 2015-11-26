@@ -54,7 +54,6 @@ $ py.test
 - ~~Treat all process forks separately on the plot with a different color~~
 - mouse hover a plot line will show the process ID and CPU % on that point.
 - add a curved graphic plot instead of a line.
-- add a color palette on the legend where different PIDs never have the same color.
 - after each iteration, add the new forked processes (if any), and remove the non-existing ones (if any).
 - expand utility to other metrics: memory, disk I/O, or number of open file descriptors, for example. Pass these options as a command line parameter.
 
