@@ -35,8 +35,8 @@ NO_PROCESS_FOUND = "\nprocess not found. please check input parameters. " +\
                    "not chrome.EXE nor Chrome.exe"
 INCORRECT_ITERATIONS_FOUND = "\nincorrect iterations parameter. It must be " +\
                              "an integer and greater than zero.\n" + USAGE
-INCORRECT_INTERVAL_FOUND = "\nincorrect interval parameter. " +\
-                           "It must be a float.\n" + USAGE
+INCORRECT_INTERVAL_FOUND = "\nincorrect interval parameter. It must be " +\
+                           "an int or float and greater than zero.\n" + USAGE
 
 
 class ProcessCPU2Plot:
@@ -92,11 +92,14 @@ class ProcessCPU2Plot:
         Parameters after the interval parameters are neglected
         """
         try:
-            float(self.interval)
+            interval = float(self.interval)
         except ValueError:
             print(INCORRECT_INTERVAL_FOUND)
             exit(-1)
-        self.interval = float(self.interval)
+        if interval <= 0:
+            print(INCORRECT_INTERVAL_FOUND)
+            exit(-1)
+        self.interval = interval
 
     def process_pid(self):
         """ Gets the list of the running process (entered on the command line) PIDs
