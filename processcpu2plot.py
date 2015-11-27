@@ -136,7 +136,7 @@ class ProcessCPU2Plot:
         """ Uses the matplotlib to create a line graphic plot
         """
         for pid_value in range(len(self.values)):
-            plt.plot(self.values[pid_value], ':',
+            plt.plot(self.values[pid_value], '-',
                      label=str(self.pids[pid_value].pid))
         plt.ylabel(sys.argv[1] + ' CPU %')
         plt.xlabel('time: ' + str(self.iterations) + ' iterations of ' +
