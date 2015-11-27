@@ -125,7 +125,6 @@ class ProcessCPU2Plot:
                 try:
                     values_array[process_index][iteration] = \
                         self.pids[process_index].cpu_percent(self.interval)
-                    print(values_array[process_index][iteration])
                 except psutil.NoSuchProcess:
                     print('process with ID ' +
                           str(self.pids[process_index].pid) +
@@ -160,5 +159,4 @@ if __name__ == "__main__":
     # obtains the process PID(s), its CPU % values and plots them
     PROCESSCPU.pids = PROCESSCPU.process_pid()
     PROCESSCPU.values = PROCESSCPU.process_cpu_values()
-    print(PROCESSCPU.values)
     PROCESSCPU.plot()
