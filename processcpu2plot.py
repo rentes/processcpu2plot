@@ -77,14 +77,14 @@ class ProcessCPU2Plot:
         """
         try:
             iterations = int(self.iterations)
+            if iterations <= 0 or isinstance(self.iterations, float):
+                print(INCORRECT_ITERATIONS_FOUND)
+                exit(-1)
+            else:
+                self.iterations = iterations
         except ValueError:
             print(INCORRECT_ITERATIONS_FOUND)
             exit(-1)
-        if iterations <= 0 or isinstance(self.iterations, float):
-            print(INCORRECT_ITERATIONS_FOUND)
-            exit(-1)
-        else:
-            self.iterations = iterations
 
     def validate_interval(self):
         """ Validates the interval parameter
@@ -93,13 +93,14 @@ class ProcessCPU2Plot:
         """
         try:
             interval = float(self.interval)
+            if interval <= 0:
+                print(INCORRECT_INTERVAL_FOUND)
+                exit(-1)
+            else:
+                self.interval = interval
         except ValueError:
             print(INCORRECT_INTERVAL_FOUND)
             exit(-1)
-        if interval <= 0:
-            print(INCORRECT_INTERVAL_FOUND)
-            exit(-1)
-        self.interval = interval
 
     def process_pid(self):
         """ Gets the list of the running process (entered on the command line) PIDs
@@ -122,9 +123,9 @@ class ProcessCPU2Plot:
         for iteration in range(self.iterations):
             for process_index in range(len(self.pids)):
                 try:
-                    self.pids[process_index].cpu_percent(interval=0.1)
                     values_array[process_index][iteration] = \
                         self.pids[process_index].cpu_percent(self.interval)
+                    print(values_array[process_index][iteration])
                 except psutil.NoSuchProcess:
                     print('process with ID ' +
                           str(self.pids[process_index].pid) +
@@ -136,7 +137,7 @@ class ProcessCPU2Plot:
         """ Uses the matplotlib to create a line graphic plot
         """
         for pid_value in range(len(self.values)):
-            plt.plot(self.values[pid_value], ':s',
+            plt.plot(self.values[pid_value], ':',
                      label=str(self.pids[pid_value].pid))
         plt.ylabel(sys.argv[1] + ' CPU %')
         plt.xlabel('time: ' + str(self.iterations) + ' iterations of ' +
@@ -147,7 +148,6 @@ class ProcessCPU2Plot:
         else:
             plt.legend(loc=1, ncol=2, shadow=True, title="PIDs", fancybox=True)
         plt.show()
-
 
 if __name__ == "__main__":
     NUMBER_OF_PARAMETERS = len(sys.argv) - 1
@@ -160,4 +160,5 @@ if __name__ == "__main__":
     # obtains the process PID(s), its CPU % values and plots them
     PROCESSCPU.pids = PROCESSCPU.process_pid()
     PROCESSCPU.values = PROCESSCPU.process_cpu_values()
+    print(PROCESSCPU.values)
     PROCESSCPU.plot()
